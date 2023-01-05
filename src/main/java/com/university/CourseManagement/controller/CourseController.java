@@ -41,7 +41,7 @@ public class CourseController {
      * @return ResponseResult<Course>
      */
     @GetMapping("/{id}")
-    public ResponseResult<Course> findByVat(@PathVariable("id") int id) {
+    public ResponseResult<Course> findById(@PathVariable("id") int id) {
         return courseService.readCourseById(id);
     }
 

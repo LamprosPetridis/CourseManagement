@@ -42,7 +42,7 @@ public class StudentController {
      * @return ResponseResult<Student>
      */
     @GetMapping("/{id}")
-    public ResponseResult<Student> findByVat(@PathVariable("id") int id) {
+    public ResponseResult<Student> findById(@PathVariable("id") int id) {
         return studentService.readStudentById(id);
     }
 
