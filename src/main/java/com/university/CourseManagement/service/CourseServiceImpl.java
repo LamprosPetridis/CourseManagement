@@ -3,7 +3,11 @@ package com.university.CourseManagement.service;
 import com.university.CourseManagement.dto.ResponseResult;
 import com.university.CourseManagement.dto.ResponseStatus;
 import com.university.CourseManagement.model.Course;
+import com.university.CourseManagement.model.Instructor;
+import com.university.CourseManagement.model.Student;
 import com.university.CourseManagement.repository.CourseRepository;
+import com.university.CourseManagement.repository.InstructorRepository;
+import com.university.CourseManagement.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,8 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService{
 
     private CourseRepository courseRepository;
+    private InstructorRepository instructorRepository;
+    private StudentRepository studentRepository;
 
 
 
@@ -55,4 +61,20 @@ public class CourseServiceImpl implements CourseService{
         return new ResponseResult(true, ResponseStatus.SUCCESS, "Course details deleted successfully");
 
     }
+
+//    @Override
+//    public ResponseResult<Boolean> assignCourse(int courseId, int id) {
+//        Optional<Student> studentDb = studentRepository.findById(id);
+//        Optional<Instructor> instructorDb = instructorRepository.findById(id);
+//        Optional<Course> courseDb = courseRepository.findById(id);
+//
+//
+//        if (courseDb.isPresent()) {
+//
+//        } else {
+//            return new ResponseResult(null, ResponseStatus.COURSE_NOT_FOUND, "Cannot find course with ID: " + id);
+//        }
+//
+//      return null;
+//    }
 }

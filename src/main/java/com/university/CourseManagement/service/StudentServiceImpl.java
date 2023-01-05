@@ -2,11 +2,14 @@ package com.university.CourseManagement.service;
 
 import com.university.CourseManagement.dto.ResponseResult;
 import com.university.CourseManagement.dto.ResponseStatus;
+import com.university.CourseManagement.model.Course;
 import com.university.CourseManagement.model.Student;
+import com.university.CourseManagement.repository.CourseRepository;
 import com.university.CourseManagement.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -14,6 +17,7 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService{
 
     private StudentRepository studentRepository;
+    private CourseRepository courseRepository;
 
 
 
@@ -54,5 +58,31 @@ public class StudentServiceImpl implements StudentService{
         studentRepository.deleteById(id);
         return new ResponseResult(true, ResponseStatus.SUCCESS, "Student details deleted successfully");
 
+    }
+
+    @Override
+    public ResponseResult<Boolean> assignCourse(int studentId, int courseId) {
+        Student student = studentRepository.findStudentById(studentId);
+        if (student == null) {
+            return new ResponseResult(Boolean.FALSE, ResponseStatus.STUDENT_NOT_FOUND, "Cannot find student with ID: " + studentId);
+        } else {
+
+            Optional<Course> courseDb = courseRepository.findById(courseId);
+            if (courseDb.isPresent()) {
+                List<Course> coursesAttended= student.getCourses();
+
+                if(coursesAttended.size() >= 5){
+                    return new ResponseResult(Boolean.FALSE, ResponseStatus.STUDENT_MAX_COURSES, "Student with ID:  " + studentId + " already attends maximum number of Courses (5) ");
+                }
+                coursesAttended.add(courseDb.get());
+                student.setCourses(coursesAttended);
+                studentRepository.save(student);
+            }else{
+                return new ResponseResult(Boolean.FALSE, ResponseStatus.COURSE_NOT_FOUND, "Cannot find course with ID: " + courseId);
+            }
+
+            return new ResponseResult(Boolean.TRUE, ResponseStatus.SUCCESS, "Successfully assigned course with ID " + courseId + " to student with ID"+ studentId);
+
+        }
     }
 }

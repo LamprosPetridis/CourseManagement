@@ -2,6 +2,7 @@ package com.university.CourseManagement.controller;
 
 import com.university.CourseManagement.dto.ResponseResult;
 import com.university.CourseManagement.dto.ResponseStatus;
+import com.university.CourseManagement.model.Course;
 import com.university.CourseManagement.service.StudentService;
 import com.university.CourseManagement.model.Student;
 import lombok.AllArgsConstructor;
@@ -49,7 +50,7 @@ public class StudentController {
      * This endpoint calls a method of StudentService to Update a Student with this id
      *
      * @param id
-     * @return ResponseResult<Owner>
+     * @return ResponseResult<Student>
      */
     @PutMapping("/{id}")
     public ResponseResult<Student> update(@PathVariable("id") int id, @RequestBody Student student) {
@@ -60,11 +61,23 @@ public class StudentController {
      * This endpoint call a method of StudentService to Delete the Student with this id
      *
      * @param id
-     * @return ResponseResult<Owner>
+     * @return ResponseResult<Boolean>
      */
     @DeleteMapping("/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") int id) {
         return studentService.deleteStudent(id);
+    }
+
+    /**
+     * This endpoint calls a method of StudentService to assign a person to a Course
+     *
+     * @param studentId, courseId
+     * @return ResponseResult<Course>
+     * @throws Exception
+     */
+    @PutMapping("/assign/{studentId}/{courseId}")
+    public ResponseResult<Boolean> assignCourse(@PathVariable("studentId") int studentId, @PathVariable("courseId") int courseId ) throws Exception {
+        return studentService.assignCourse(studentId,courseId);
     }
 
 

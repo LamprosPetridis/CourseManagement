@@ -13,5 +13,7 @@ public interface InstructorService {
     ResponseResult<Instructor> updateInstructor(int id, Instructor instructor);
 
     ResponseResult<Boolean> deleteInstructor(int id);
+
+    ResponseResult<Boolean> assignCourse(int instructorId, int courseId);
     
 }

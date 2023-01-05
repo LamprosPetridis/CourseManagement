@@ -60,12 +60,14 @@ public class CourseController {
      * This endpoint call a method of CourseService to Delete the Course with this id
      *
      * @param id
-     * @return ResponseResult<Owner>
+     * @return ResponseResult<Boolean>
      */
     @DeleteMapping("/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") int id) {
         return courseService.deleteCourse(id);
     }
+
+
 
 
 }

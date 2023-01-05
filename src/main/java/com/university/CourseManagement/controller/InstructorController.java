@@ -22,9 +22,9 @@ public class InstructorController {
     private InstructorService instructorService;
 
     /**
-     * This endpoint calls a method of InstructorService to Create a Instructor
+     * This endpoint calls a method of InstructorService to Create an Instructor
      *
-     * @param Instructor
+     * @param instructor
      * @return ResponseResult<Instructor>
      * @throws Exception
      */
@@ -34,7 +34,7 @@ public class InstructorController {
     }
 
     /**
-     * This endpoint calls a method of InstructorService to Get a Instructor
+     * This endpoint calls a method of InstructorService to Get an Instructor
      *
      * @param id
      * @return ResponseResult<Instructor>
@@ -45,10 +45,10 @@ public class InstructorController {
     }
 
     /**
-     * This endpoint calls a method of InstructorService to Update a Instructor with this id
+     * This endpoint calls a method of InstructorService to Update an Instructor with this id
      *
      * @param id
-     * @return ResponseResult<Owner>
+     * @return ResponseResult<Instructor>
      */
     @PutMapping("/{id}")
     public ResponseResult<Instructor> update(@PathVariable("id") int id, @RequestBody Instructor instructor) {
@@ -59,12 +59,16 @@ public class InstructorController {
      * This endpoint call a method of InstructorService to Delete the Instructor with this id
      *
      * @param id
-     * @return ResponseResult<Owner>
+     * @return ResponseResult<Boolean>
      */
     @DeleteMapping("/{id}")
     public ResponseResult<Boolean> delete(@PathVariable("id") int id) {
         return instructorService.deleteInstructor(id);
     }
 
+    @PutMapping("/assign/{instructorId}/{courseId}")
+    public ResponseResult<Boolean> assignCourse(@PathVariable("instructorId") int instructorId, @PathVariable("courseId") int courseId ) throws Exception {
+        return instructorService.assignCourse(instructorId,courseId);
+    }
 
 }

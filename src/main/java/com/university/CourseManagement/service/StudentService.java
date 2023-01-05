@@ -14,4 +14,6 @@ public interface StudentService {
 
     ResponseResult<Boolean> deleteStudent(int id);
 
+    ResponseResult<Boolean> assignCourse(int studentId, int courseId);
+
 }

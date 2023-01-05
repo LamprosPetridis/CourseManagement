@@ -12,16 +12,10 @@ import java.util.List;
 public class Course {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @JsonIgnore
-    @ManyToOne
-    private Student student;
-
-    @JsonIgnore
-    @ManyToOne
-    private Instructor instructor;
 
 }
