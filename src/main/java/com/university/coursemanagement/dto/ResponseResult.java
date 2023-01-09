@@ -1,4 +1,4 @@
-package com.university.CourseManagement.dto;
+package com.university.coursemanagement.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
