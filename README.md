@@ -22,3 +22,7 @@ This application makes use of H2 Database in order to store data. Database can b
 * JDBC URL:	'jdbc:h2:mem:testdb'
 * User Name: 'sa'
 * Password: empty, no password needed
+
+# Export to Excel
+Follow link below to export all student entries in database to Excel
+* [Download Excel](http://localhost:8080/student/export-to-excel)

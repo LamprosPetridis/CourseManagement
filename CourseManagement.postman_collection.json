@@ -314,6 +314,26 @@
 					"response": []
 				},
 				{
+					"name": "Export All Students To Excel File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/student/export-to-excel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"export-to-excel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update Student",
 					"request": {
 						"method": "PUT",
